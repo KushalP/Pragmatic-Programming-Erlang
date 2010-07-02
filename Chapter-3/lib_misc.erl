@@ -3,7 +3,8 @@
 	sum/1,
 	sum/2,
 	for/3,
-	qsort/1
+	qsort/1,
+	pythag/1
 ]).
 
 sum(L) ->
@@ -25,3 +26,15 @@ qsort([Pivot|T]) ->
 	qsort([X || X <- T, X < Pivot])
 	++ [Pivot] ++
 	qsort([X || X <- T, X >= Pivot]).
+
+pythag(N) ->
+	[ {A, B, C} ||
+		% list:seq(1, N) returns a list of all the
+		% integers from 1 to N. Thus, the below means
+		% that A takes all possible values from 1 to N.
+		A <- lists:seq(1, N),
+		B <- lists:seq(1, N),
+		C <- lists:seq(1, N),
+		A + B + C =< N,
+		A * A + B * B =:= C * C
+	].
