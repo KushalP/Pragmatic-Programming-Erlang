@@ -4,7 +4,8 @@
 	sum/2,
 	for/3,
 	qsort/1,
-	pythag/1
+	pythag/1,
+	perms/1
 ]).
 
 sum(L) ->
@@ -38,3 +39,10 @@ pythag(N) ->
 		A + B + C =< N,
 		A * A + B * B =:= C * C
 	].
+
+% Produces typed permutations of what it's given. Perfect
+% for funding anagrams or creating string permutations.
+perms([]) ->
+	[[]];
+perms(L) ->
+	[[H|T] || H <- L, T <- perms(L--[H])].
